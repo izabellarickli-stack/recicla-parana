@@ -1,1107 +1,1772 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Recicla Paraná - Tecnologia, sustentabilidade e educação ambiental.">
-<title>♻️ Recicla Paraná</title>
-
-<style>
-:root{
-    --navy:#061b32;
-    --navy2:#0b3154;
-    --green:#12a866;
-    --green2:#31d98a;
-    --white:#ffffff;
-    --light:#f4f8fa;
-    --text:#536879;
-    --border:#dce7ed;
-}
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:var(--white);
-    color:var(--navy);
-    overflow-x:hidden;
-}
-
-header{
-    position:sticky;
-    top:0;
-    z-index:1000;
-    height:75px;
-    padding:0 7%;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    background:rgba(6,27,50,.97);
-    box-shadow:0 5px 25px rgba(0,0,0,.12);
-}
-
-.logo{
-    color:white;
-    font-size:22px;
-    font-weight:900;
-}
-
-.logo span{
-    color:var(--green2);
-}
-
-nav{
-    display:flex;
-    gap:28px;
-}
-
-nav a{
-    color:white;
-    text-decoration:none;
-    font-size:14px;
-    font-weight:bold;
-    transition:.3s;
-}
-
-nav a:hover{
-    color:var(--green2);
-}
-
-.menu{
-    display:none;
-    border:0;
-    background:none;
-    color:white;
-    font-size:28px;
-    cursor:pointer;
-}
-
-.hero{
-    min-height:calc(100vh - 75px);
-    padding:80px 8%;
-    display:flex;
-    align-items:center;
-    position:relative;
-    overflow:hidden;
-    background:
-        radial-gradient(circle at 90% 20%,rgba(18,168,102,.18),transparent 250px),
-        radial-gradient(circle at 5% 85%,rgba(6,27,50,.08),transparent 250px),
-        white;
-}
-
-.hero:after{
-    content:"♻";
-    position:absolute;
-    right:-50px;
-    top:40px;
-    font-size:360px;
-    color:rgba(18,168,102,.04);
-    transform:rotate(15deg);
-}
-
-.hero-content{
-    max-width:850px;
-    position:relative;
-    z-index:2;
-}
-
-.tag{
-    display:inline-block;
-    padding:9px 17px;
-    margin-bottom:25px;
-    border-radius:30px;
-    background:#e5f8ef;
-    color:var(--green);
-    font-size:13px;
-    font-weight:bold;
-}
-
-h1{
-    font-family:Georgia,serif;
-    font-size:clamp(55px,9vw,95px);
-    line-height:.95;
-    margin-bottom:25px;
-}
-
-h1 span{
-    color:var(--green);
-}
-
-.hero h2{
-    color:var(--navy2);
-    font-size:clamp(23px,4vw,35px);
-    line-height:1.3;
-    margin-bottom:20px;
-}
-
-.hero p{
-    max-width:680px;
-    color:var(--text);
-    font-size:18px;
-    line-height:1.8;
-}
-
-.buttons{
-    display:flex;
-    flex-wrap:wrap;
-    gap:15px;
-    margin-top:35px;
-}
-
-.button{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    padding:15px 28px;
-    border-radius:30px;
-    text-decoration:none;
-    font-weight:bold;
-    transition:.3s;
-}
-
-.primary{
-    background:var(--green);
-    color:white;
-    box-shadow:0 10px 25px rgba(18,168,102,.25);
-}
-
-.primary:hover{
-    transform:translateY(-4px);
-    background:#0d8d56;
-}
-
-.secondary{
-    color:var(--navy);
-    border:2px solid var(--navy);
-}
-
-.secondary:hover{
-    background:var(--navy);
-    color:white;
-}
-
-.stats{
-    background:var(--navy);
-    color:white;
-    padding:42px 8%;
-}
-
-.stats-grid{
-    max-width:1150px;
-    margin:auto;
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:20px;
-    text-align:center;
-}
-
-.stat strong{
-    display:block;
-    color:var(--green2);
-    font-size:38px;
-    margin-bottom:7px;
-}
-
-.stat span{
-    color:#c8d7e2;
-    font-size:14px;
-}
-
-section{
-    padding:95px 8%;
-}
-
-.section-header{
-    max-width:750px;
-    margin:0 auto 50px;
-    text-align:center;
-}
-
-.section-tag{
-    display:inline-block;
-    padding:7px 14px;
-    margin-bottom:15px;
-    border-radius:20px;
-    background:#e5f8ef;
-    color:var(--green);
-    font-size:12px;
-    font-weight:bold;
-    text-transform:uppercase;
-    letter-spacing:1px;
-}
-
-.section-title{
-    font-family:Georgia,serif;
-    font-style:italic;
-    font-size:clamp(35px,5vw,52px);
-    margin-bottom:15px;
-}
-
-.section-description{
-    color:var(--text);
-    line-height:1.8;
-}
-
-.cards{
-    max-width:1150px;
-    margin:auto;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:25px;
-}
-
-.card{
-    position:relative;
-    padding:32px 25px;
-    background:white;
-    border:1px solid var(--border);
-    border-radius:22px;
-    text-align:center;
-    box-shadow:0 15px 40px rgba(6,27,50,.10);
-    transition:.35s;
-    overflow:hidden;
-}
-
-.card:before{
-    content:"";
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:4px;
-    background:linear-gradient(90deg,var(--green),var(--navy2));
-}
-
-.card:hover{
-    transform:translateY(-10px);
-    box-shadow:0 25px 50px rgba(6,27,50,.16);
-}
-
-.icon{
-    width:75px;
-    height:75px;
-    margin:0 auto 20px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:20px;
-    background:#eaf8f2;
-    font-size:38px;
-    transition:.3s;
-}
-
-.card:hover .icon{
-    transform:scale(1.1) rotate(5deg);
-}
-
-.card h3{
-    margin-bottom:12px;
-    font-size:20px;
-}
-
-.card p{
-    color:var(--text);
-    line-height:1.7;
-    font-size:14px;
-}
-
-#funciona{
-    background:var(--light);
-}
-
-.steps{
-    max-width:1100px;
-    margin:auto;
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:20px;
-}
-
-.step{
-    text-align:center;
-    padding:20px;
-}
-
-.number{
-    width:65px;
-    height:65px;
-    margin:0 auto 20px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:50%;
-    background:var(--green);
-    color:white;
-    font-size:23px;
-    font-weight:bold;
-    box-shadow:0 8px 20px rgba(18,168,102,.25);
-}
-
-.step h3{
-    margin-bottom:10px;
-}
-
-.step p{
-    color:var(--text);
-    line-height:1.6;
-    font-size:14px;
-}
-
-#recompensas{
-    background:var(--navy);
-    color:white;
-}
-
-#recompensas .section-title{
-    color:white;
-}
-
-#recompensas .section-description{
-    color:#c7d7e3;
-}
-
-.points-box{
-    max-width:800px;
-    margin:50px auto 0;
-    padding:35px;
-    text-align:center;
-    border-radius:25px;
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.14);
-}
-
-.points-box p{
-    color:#c7d7e3;
-}
-
-.points{
-    color:var(--green2);
-    font-size:60px;
-    font-weight:900;
-    margin:15px 0;
-}
-
-.points-button{
-    border:0;
-    padding:14px 25px;
-    border-radius:30px;
-    background:var(--green);
-    color:white;
-    font-weight:bold;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.points-button:hover{
-    transform:scale(1.05);
-    background:#20b973;
-}
-
-#infantil{
-    background:#eef9f4;
-}
-
-.game-card{
-    cursor:pointer;
-}
-
-.impact{
-    text-align:center;
-}
-
-.impact-box{
-    max-width:950px;
-    margin:auto;
-    padding:50px;
-    background:var(--light);
-    border-radius:25px;
-    border-left:6px solid var(--green);
-    box-shadow:0 15px 40px rgba(6,27,50,.10);
-}
-
-.impact-box p{
-    color:var(--text);
-    font-size:18px;
-    line-height:1.9;
-}
-
-.cta{
-    text-align:center;
-    color:white;
-    background:linear-gradient(135deg,var(--green),#087c50);
-}
-
-.cta h2{
-    font-size:clamp(30px,5vw,45px);
-    margin-bottom:15px;
-}
-
-.cta p{
-    max-width:650px;
-    margin:0 auto 25px;
-    line-height:1.7;
-}
-
-.cta .button{
-    background:white;
-    color:var(--navy);
-}
-
-footer{
-    background:#041524;
-    color:white;
-    text-align:center;
-    padding:45px 20px;
-}
-
-footer p{
-    color:#aebfcd;
-    margin-top:8px;
-    font-size:14px;
-}
-
-#notification{
-    position:fixed;
-    left:50%;
-    bottom:25px;
-    transform:translate(-50%,120px);
-    background:var(--green);
-    color:white;
-    padding:14px 22px;
-    border-radius:30px;
-    font-weight:bold;
-    box-shadow:0 10px 30px rgba(0,0,0,.2);
-    z-index:3000;
-    transition:.4s;
-}
-
-#notification.show{
-    transform:translate(-50%,0);
-}
-
-#top{
-    position:fixed;
-    right:20px;
-    bottom:20px;
-    width:48px;
-    height:48px;
-    border:0;
-    border-radius:50%;
-    background:var(--green);
-    color:white;
-    font-size:20px;
-    cursor:pointer;
-    display:none;
-    z-index:2000;
-}
-
-.reveal{
-    opacity:0;
-    transform:translateY(35px);
-    transition:.8s;
-}
-
-.reveal.active{
-    opacity:1;
-    transform:translateY(0);
-}
-
-@media(max-width:800px){
-
-    header{
-        padding:0 6%;
-    }
-
-    .menu{
-        display:block;
-    }
-
-    nav{
-        position:absolute;
-        top:75px;
-        left:0;
-        width:100%;
-        display:none;
-        flex-direction:column;
-        padding:25px;
-        background:var(--navy);
-    }
-
-    nav.active{
-        display:flex;
-    }
-
-    .stats-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .steps{
-        grid-template-columns:repeat(2,1fr);
-    }
-}
-
-@media(max-width:500px){
-
-    section{
-        padding:70px 6%;
-    }
-
-    .hero{
-        padding:60px 6%;
-    }
-
-    .buttons{
-        flex-direction:column;
-    }
-
-    .button{
-        width:100%;
-    }
-
-    .steps{
-        grid-template-columns:1fr;
-    }
-
-    .impact-box{
-        padding:30px 20px;
-    }
-
-    .points-box{
-        padding:30px 20px;
-    }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Recicla Paraná - Tecnologia, sustentabilidade e educação ambiental.">
+
+    <title>♻️ Recicla Paraná</title>
+
+    <style>
+
+        /* =====================================================
+           CORES
+        ===================================================== */
+
+        :root {
+            --verde: #15945f;
+            --verde-claro: #dff5e9;
+            --verde-hover: #10794d;
+
+            --azul: #062b49;
+            --azul-claro: #0c4168;
+
+            --branco: #ffffff;
+            --fundo: #f5faf8;
+
+            --texto: #183b33;
+            --cinza: #61746e;
+
+            --sombra: 0 10px 35px rgba(6, 43, 73, .10);
+
+            --raio: 22px;
+        }
+
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--fundo);
+            color: var(--texto);
+
+            transition: .3s;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+
+        /* =====================================================
+           BARRA DE NAVEGAÇÃO
+        ===================================================== */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+
+            z-index: 1000;
+
+            background: rgba(6, 43, 73, .95);
+
+            backdrop-filter: blur(12px);
+
+            box-shadow: 0 4px 25px rgba(0, 0, 0, .15);
+        }
+
+        .navbar {
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding: 16px 25px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+
+            font-size: 22px;
+
+            font-weight: bold;
+
+            display: flex;
+            align-items: center;
+
+            gap: 8px;
+        }
+
+        .logo span {
+            color: #62dca6;
+        }
+
+        nav {
+            display: flex;
+
+            align-items: center;
+
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: #62dca6;
+        }
+
+        .menu-btn {
+            display: none;
+
+            background: none;
+
+            border: none;
+
+            color: white;
+
+            font-size: 27px;
+
+            cursor: pointer;
+        }
+
+
+        /* =====================================================
+           BOTÕES
+        ===================================================== */
+
+        .btn {
+            border: none;
+
+            cursor: pointer;
+
+            display: inline-flex;
+
+            justify-content: center;
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 14px 25px;
+
+            border-radius: 50px;
+
+            background: var(--verde);
+
+            color: white;
+
+            font-weight: bold;
+
+            transition: .3s;
+        }
+
+        .btn:hover {
+            background: var(--verde-hover);
+
+            transform: translateY(-3px);
+
+            box-shadow: 0 10px 25px rgba(21, 148, 95, .3);
+        }
+
+        .btn-azul {
+            background: var(--azul);
+        }
+
+        .btn-azul:hover {
+            background: var(--azul-claro);
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+            min-height: 100vh;
+
+            padding: 150px 7% 80px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            background:
+                radial-gradient(circle at 10% 20%,
+                    rgba(21, 148, 95, .18),
+                    transparent 25%),
+
+                radial-gradient(circle at 90% 70%,
+                    rgba(6, 43, 73, .15),
+                    transparent 25%),
+
+                white;
+
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 900px;
+
+            animation: subir 1s ease;
+        }
+
+        .selo {
+            display: inline-block;
+
+            padding: 9px 18px;
+
+            border-radius: 30px;
+
+            background: var(--verde-claro);
+
+            color: var(--verde);
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            color: var(--azul);
+
+            font-family: Georgia, serif;
+
+            font-style: italic;
+
+            font-size: clamp(48px, 10vw, 90px);
+
+            line-height: 1;
+        }
+
+        .hero h1 span {
+            color: var(--verde);
+        }
+
+        .hero h2 {
+            margin: 25px 0 15px;
+
+            color: var(--azul);
+
+            font-size: clamp(20px, 3vw, 28px);
+        }
+
+        .hero p {
+            max-width: 700px;
+
+            margin: auto;
+
+            color: var(--cinza);
+
+            line-height: 1.8;
+
+            font-size: 17px;
+        }
+
+        .hero-buttons {
+            margin-top: 30px;
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+        }
+
+        .folhas {
+            font-size: 55px;
+
+            margin-top: 40px;
+
+            animation: flutuar 3s ease-in-out infinite;
+        }
+
+
+        /* =====================================================
+           SEÇÕES
+        ===================================================== */
+
+        section {
+            padding: 90px 7%;
+        }
+
+        .titulo {
+            text-align: center;
+
+            color: var(--azul);
+
+            font-family: Georgia, serif;
+
+            font-style: italic;
+
+            font-size: clamp(35px, 5vw, 50px);
+
+            margin-bottom: 15px;
+        }
+
+        .titulo span {
+            color: var(--verde);
+        }
+
+        .subtitulo {
+            max-width: 720px;
+
+            margin: 0 auto 50px;
+
+            text-align: center;
+
+            color: var(--cinza);
+
+            line-height: 1.7;
+        }
+
+
+        /* =====================================================
+           CARDS
+        ===================================================== */
+
+        .cards {
+            max-width: 1150px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+
+            padding: 32px;
+
+            border-radius: var(--raio);
+
+            box-shadow: var(--sombra);
+
+            transition: .35s;
+
+            border: 1px solid rgba(21, 148, 95, .08);
+        }
+
+        .card:hover {
+            transform: translateY(-9px);
+
+            box-shadow:
+                0 18px 45px rgba(6, 43, 73, .15);
+        }
+
+        .icone {
+            width: 65px;
+            height: 65px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 18px;
+
+            background: var(--verde-claro);
+
+            font-size: 34px;
+
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            color: var(--azul);
+
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: var(--cinza);
+
+            line-height: 1.6;
+        }
+
+
+        /* =====================================================
+           COMO FUNCIONA
+        ===================================================== */
+
+        #funciona {
+            background: var(--verde-claro);
+        }
+
+        .passos {
+            max-width: 1000px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(190px, 1fr));
+
+            gap: 25px;
+        }
+
+        .passo {
+            background: white;
+
+            padding: 30px;
+
+            text-align: center;
+
+            border-radius: var(--raio);
+
+            box-shadow: var(--sombra);
+        }
+
+        .numero {
+            width: 55px;
+            height: 55px;
+
+            margin: 0 auto 20px;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            background: var(--azul);
+
+            color: white;
+
+            border-radius: 50%;
+
+            font-weight: bold;
+
+            font-size: 20px;
+        }
+
+
+        /* =====================================================
+           ÁREA DE PONTOS
+        ===================================================== */
+
+        #pontos {
+            background: var(--azul);
+        }
+
+        #pontos .titulo {
+            color: white;
+        }
+
+        #pontos .subtitulo {
+            color: #c9d8df;
+        }
+
+        .painel {
+            max-width: 650px;
+
+            margin: auto;
+
+            padding: 40px;
+
+            background: white;
+
+            border-radius: 28px;
+
+            text-align: center;
+
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, .25);
+        }
+
+        .nivel {
+            display: inline-block;
+
+            padding: 7px 15px;
+
+            background: var(--verde-claro);
+
+            color: var(--verde);
+
+            border-radius: 30px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+        }
+
+        .pontos {
+            color: var(--verde);
+
+            font-size: 65px;
+
+            font-weight: bold;
+
+            margin: 12px;
+        }
+
+        .barra {
+            width: 100%;
+
+            height: 18px;
+
+            background: #e4ece9;
+
+            border-radius: 30px;
+
+            overflow: hidden;
+
+            margin: 20px 0;
+        }
+
+        .progresso {
+            width: 0%;
+
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #15945f,
+                    #63dca3
+                );
+
+            transition: 1s;
+        }
+
+        .estatisticas {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+
+            margin-top: 30px;
+        }
+
+        .estatistica {
+            padding: 18px;
+
+            border-radius: 15px;
+
+            background: #f3f8f6;
+        }
+
+        .estatistica strong {
+            display: block;
+
+            color: var(--azul);
+
+            font-size: 25px;
+
+            margin-bottom: 5px;
+        }
+
+        .estatistica small {
+            color: var(--cinza);
+        }
+
+
+        /* =====================================================
+           IMPACTO
+        ===================================================== */
+
+        .impacto {
+            max-width: 1000px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+
+            gap: 25px;
+        }
+
+        .impacto-box {
+            background: white;
+
+            padding: 35px;
+
+            text-align: center;
+
+            border-radius: var(--raio);
+
+            box-shadow: var(--sombra);
+        }
+
+        .impacto-box strong {
+            display: block;
+
+            color: var(--verde);
+
+            font-size: 45px;
+
+            margin-bottom: 8px;
+        }
+
+        .impacto-box p {
+            color: var(--cinza);
+        }
+
+
+        /* =====================================================
+           QUIZ
+        ===================================================== */
+
+        #quiz {
+            background: #eef7f3;
+        }
+
+        .quiz {
+            max-width: 700px;
+
+            margin: auto;
+
+            background: white;
+
+            padding: 35px;
+
+            border-radius: 25px;
+
+            box-shadow: var(--sombra);
+        }
+
+        .quiz h3 {
+            color: var(--azul);
+
+            margin-bottom: 25px;
+
+            line-height: 1.5;
+        }
+
+        .resposta {
+            width: 100%;
+
+            padding: 15px;
+
+            margin: 7px 0;
+
+            background: white;
+
+            border: 2px solid #dce8e4;
+
+            border-radius: 13px;
+
+            text-align: left;
+
+            cursor: pointer;
+
+            transition: .3s;
+        }
+
+        .resposta:hover {
+            border-color: var(--verde);
+
+            background: var(--verde-claro);
+        }
+
+        #resultado {
+            text-align: center;
+
+            margin-top: 20px;
+
+            font-weight: bold;
+        }
+
+
+        /* =====================================================
+           PONTOS DE COLETA
+        ===================================================== */
+
+        .localizacao {
+            max-width: 900px;
+
+            margin: auto;
+
+            padding: 45px;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--azul),
+                    var(--azul-claro)
+                );
+
+            color: white;
+
+            text-align: center;
+
+            box-shadow: var(--sombra);
+        }
+
+        .localizacao h3 {
+            font-size: 30px;
+
+            margin-bottom: 15px;
+        }
+
+        .localizacao p {
+            color: #d4e2e8;
+
+            line-height: 1.7;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+            background: #031c2d;
+
+            color: white;
+
+            padding: 50px 20px;
+
+            text-align: center;
+        }
+
+        footer h2 {
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            color: #b9cbc8;
+
+            margin-top: 8px;
+        }
+
+
+        /* =====================================================
+           NOTIFICAÇÃO
+        ===================================================== */
+
+        .notificacao {
+            position: fixed;
+
+            bottom: 25px;
+            right: 25px;
+
+            z-index: 2000;
+
+            padding: 17px 23px;
+
+            background: var(--azul);
+
+            color: white;
+
+            border-radius: 15px;
+
+            box-shadow: 0 10px 35px rgba(0, 0, 0, .25);
+
+            transform: translateY(150px);
+
+            transition: .5s;
+        }
+
+        .notificacao.mostrar {
+            transform: translateY(0);
+        }
+
+
+        /* =====================================================
+           ANIMAÇÕES
+        ===================================================== */
+
+        @keyframes subir {
+
+            from {
+                opacity: 0;
+
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform: translateY(0);
+            }
+
+        }
+
+        @keyframes flutuar {
+
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+        }
+
+
+        /* =====================================================
+           CELULAR
+        ===================================================== */
+
+        @media(max-width: 750px) {
+
+            .menu-btn {
+                display: block;
+            }
+
+            nav {
+                display: none;
+
+                position: absolute;
+
+                top: 70px;
+                left: 0;
+
+                width: 100%;
+
+                padding: 25px;
+
+                background: var(--azul);
+
+                flex-direction: column;
+
+                text-align: center;
+            }
+
+            nav.ativo {
+                display: flex;
+            }
+
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .hero {
+                padding-left: 6%;
+                padding-right: 6%;
+            }
+
+            section {
+                padding: 70px 6%;
+            }
+
+            .estatisticas {
+                grid-template-columns: 1fr;
+            }
+
+            .painel {
+                padding: 28px 20px;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+            }
+
+        }
+
+    </style>
 </head>
+
 
 <body>
 
+
+<!-- =====================================================
+     MENU
+===================================================== -->
+
 <header>
 
-<div class="logo">
-♻️ Recicla <span>Paraná</span>
-</div>
+    <div class="navbar">
 
-<button class="menu" onclick="abrirMenu()">☰</button>
+        <a href="#" class="logo">
+            ♻️ Recicla <span>Paraná</span>
+        </a>
 
-<nav id="nav">
-<a href="#sobre">Sobre</a>
-<a href="#funciona">Como funciona</a>
-<a href="#recompensas">Recompensas</a>
-<a href="#infantil">Infantil</a>
-<a href="#impacto">Impacto</a>
-</nav>
+        <button
+            class="menu-btn"
+            onclick="abrirMenu()">
+
+            ☰
+
+        </button>
+
+        <nav id="menu">
+
+            <a href="#sobre">Sobre</a>
+
+            <a href="#funciona">Como funciona</a>
+
+            <a href="#pontos">Meu impacto</a>
+
+            <a href="#coleta">Coleta</a>
+
+            <a href="#quiz">Quiz</a>
+
+        </nav>
+
+    </div>
 
 </header>
 
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
 <section class="hero">
 
-<div class="hero-content">
+    <div class="hero-content">
 
-<div class="tag">
-🌱 Tecnologia + Sustentabilidade
-</div>
+        <div class="selo">
+            🌱 Projeto sustentável
+        </div>
 
-<h1>
-Recicla <span>Paraná</span>
-</h1>
+        <h1>
+            Recicla <span>Paraná</span>
+        </h1>
 
-<h2>
-Recicle hoje.<br>
-Transforme o amanhã.
-</h2>
+        <h2>
+            ♻️ Recicle hoje. Transforme o amanhã.
+        </h2>
 
-<p>
-Uma iniciativa que une tecnologia,
-sustentabilidade e educação ambiental
-para transformar a reciclagem em um
-hábito simples, acessível e divertido.
-</p>
+        <p>
+            Uma plataforma que utiliza a tecnologia para
+            incentivar a reciclagem, promover a educação
+            ambiental e transformar boas atitudes em
+            benefícios.
+        </p>
 
-<div class="buttons">
+        <div class="hero-buttons">
 
-<a href="#sobre" class="button primary">
-Conheça o projeto →
-</a>
+            <a
+                href="#funciona"
+                class="btn">
 
-<a href="#funciona" class="button secondary">
-Como funciona
-</a>
+                🚀 Conhecer o projeto
 
-</div>
+            </a>
 
-</div>
+            <a
+                href="#pontos"
+                class="btn btn-azul">
 
-</section>
+                ⭐ Ver meus pontos
 
-<div class="stats">
+            </a>
 
-<div class="stats-grid">
+        </div>
 
-<div class="stat">
-<strong class="contador" data-numero="1250">0</strong>
-<span>Reciclagens</span>
-</div>
+        <div class="folhas">
+            🌿 ♻️ 🌿
+        </div>
 
-<div class="stat">
-<strong class="contador" data-numero="850">0</strong>
-<span>Usuários</span>
-</div>
-
-<div class="stat">
-<strong class="contador" data-numero="3200">0</strong>
-<span>Kg reciclados</span>
-</div>
-
-<div class="stat">
-<strong class="contador" data-numero="95">0</strong>
-<span>Desafios</span>
-</div>
-
-</div>
-
-</div>
-
-<section id="sobre" class="reveal">
-
-<div class="section-header">
-
-<div class="section-tag">
-Nosso propósito
-</div>
-
-<h2 class="section-title">
-Por que o Recicla Paraná?
-</h2>
-
-<p class="section-description">
-O projeto utiliza tecnologia para incentivar
-atitudes sustentáveis e aproximar as pessoas
-da reciclagem.
-</p>
-
-</div>
-
-<div class="cards">
-
-<div class="card">
-<div class="icon">♻️</div>
-<h3>Reciclagem</h3>
-<p>
-Incentivamos a separação correta
-e o descarte consciente.
-</p>
-</div>
-
-<div class="card">
-<div class="icon">🌱</div>
-<h3>Sustentabilidade</h3>
-<p>
-Promovemos atitudes que ajudam
-a preservar o meio ambiente.
-</p>
-</div>
-
-<div class="card">
-<div class="icon">📱</div>
-<h3>Tecnologia</h3>
-<p>
-Acompanhe suas ações através
-de uma experiência digital.
-</p>
-</div>
-
-<div class="card">
-<div class="icon">🎁</div>
-<h3>Recompensas</h3>
-<p>
-Acumule pontos participando
-das ações de reciclagem.
-</p>
-</div>
-
-</div>
+    </div>
 
 </section>
 
-<section id="funciona" class="reveal">
 
-<div class="section-header">
+<!-- =====================================================
+     SOBRE
+===================================================== -->
 
-<div class="section-tag">
-Passo a passo
-</div>
+<section id="sobre">
 
-<h2 class="section-title">
-Como funciona?
-</h2>
+    <h2 class="titulo">
+        Por que <span>Recicla Paraná?</span>
+    </h2>
 
-<p class="section-description">
-Quatro passos simples para transformar
-uma atitude em impacto.
-</p>
+    <p class="subtitulo">
 
-</div>
+        O descarte incorreto de resíduos ainda faz parte
+        do dia a dia de muitas pessoas. O projeto busca
+        tornar a reciclagem mais simples, acessível e
+        motivadora.
 
-<div class="steps">
+    </p>
 
-<div class="step">
-<div class="number">1</div>
-<h3>Recicle</h3>
-<p>Separe os materiais recicláveis.</p>
-</div>
 
-<div class="step">
-<div class="number">2</div>
-<h3>Registre</h3>
-<p>Registre sua ação no projeto.</p>
-</div>
+    <div class="cards">
 
-<div class="step">
-<div class="number">3</div>
-<h3>Ganhe pontos</h3>
-<p>Receba pontos pela participação.</p>
-</div>
 
-<div class="step">
-<div class="number">4</div>
-<h3>Troque</h3>
-<p>Utilize seus pontos em recompensas.</p>
-</div>
+        <div class="card">
 
-</div>
+            <div class="icone">
+                ♻️
+            </div>
 
-</section>
+            <h3>
+                Reciclagem
+            </h3>
 
-<section id="recompensas" class="reveal">
+            <p>
+                Incentivamos a separação e o descarte
+                correto dos materiais recicláveis.
+            </p>
 
-<div class="section-header">
+        </div>
 
-<div class="section-tag">
-Gamificação
-</div>
 
-<h2 class="section-title">
-Recicle e conquiste
-</h2>
+        <div class="card">
 
-<p class="section-description">
-Transforme suas ações sustentáveis
-em pontos e conquistas.
-</p>
+            <div class="icone">
+                📱
+            </div>
 
-</div>
+            <h3>
+                Tecnologia
+            </h3>
 
-<div class="cards">
+            <p>
+                Utilizamos um aplicativo para registrar
+                e acompanhar as ações sustentáveis.
+            </p>
 
-<div class="card">
-<div class="icon">🎟️</div>
-<h3>Cupons</h3>
-<p>Troque pontos por benefícios.</p>
-</div>
+        </div>
 
-<div class="card">
-<div class="icon">🏆</div>
-<h3>Desafios</h3>
-<p>Complete desafios ambientais.</p>
-</div>
 
-<div class="card">
-<div class="icon">⭐</div>
-<h3>Ranking</h3>
-<p>Acompanhe sua evolução.</p>
-</div>
+        <div class="card">
 
-</div>
+            <div class="icone">
+                🏆
+            </div>
 
-<div class="points-box">
+            <h3>
+                Recompensas
+            </h3>
 
-<h3>♻️ Seu saldo</h3>
+            <p>
+                As pessoas acumulam pontos através
+                de suas atitudes sustentáveis.
+            </p>
 
-<p>
-Clique no botão para registrar uma reciclagem.
-</p>
+        </div>
 
-<div id="points" class="points">0</div>
 
-<button class="points-button" onclick="reciclar()">
-+ Registrar reciclagem
-</button>
+        <div class="card">
 
-</div>
+            <div class="icone">
+                🌎
+            </div>
+
+            <h3>
+                Impacto ambiental
+            </h3>
+
+            <p>
+                Acompanhe como pequenas atitudes podem
+                contribuir para um ambiente melhor.
+            </p>
+
+        </div>
+
+    </div>
 
 </section>
 
-<section id="infantil" class="reveal">
 
-<div class="section-header">
+<!-- =====================================================
+     COMO FUNCIONA
+===================================================== -->
 
-<div class="section-tag">
-Diversão
-</div>
+<section id="funciona">
 
-<h2 class="section-title">
-Área Infantil 🎮
-</h2>
+    <h2 class="titulo">
+        Como <span>funciona?</span>
+    </h2>
 
-<p class="section-description">
-Aprender sobre sustentabilidade também
-pode ser divertido.
-</p>
+    <p class="subtitulo">
 
-</div>
+        O processo foi pensado para ser simples,
+        rápido e fácil de entender.
 
-<div class="cards">
+    </p>
 
-<div class="card game-card"
-onclick="mensagem('🎮 Jogo da reciclagem em breve!')">
 
-<div class="icon">🎮</div>
-<h3>Jogos educativos</h3>
-<p>Aprenda reciclagem brincando.</p>
+    <div class="passos">
 
-</div>
 
-<div class="card game-card"
-onclick="mensagem('🌎 Missão ambiental desbloqueada!')">
+        <div class="passo">
 
-<div class="icon">🌎</div>
-<h3>Missões</h3>
-<p>Complete desafios ambientais.</p>
+            <div class="numero">
+                1
+            </div>
 
-</div>
+            <h3>
+                ♻️ Recicle
+            </h3>
 
-<div class="card game-card"
-onclick="mensagem('🪙 Você ganhou uma moeda virtual!')">
+            <p>
+                Separe corretamente seus materiais.
+            </p>
 
-<div class="icon">🪙</div>
-<h3>Moedas</h3>
-<p>Ganhe moedas participando.</p>
+        </div>
 
-</div>
 
-</div>
+        <div class="passo">
+
+            <div class="numero">
+                2
+            </div>
+
+            <h3>
+                📸 Registre
+            </h3>
+
+            <p>
+                Registre a reciclagem no aplicativo.
+            </p>
+
+        </div>
+
+
+        <div class="passo">
+
+            <div class="numero">
+                3
+            </div>
+
+            <h3>
+                ⭐ Ganhe pontos
+            </h3>
+
+            <p>
+                Cada ação gera pontos.
+            </p>
+
+        </div>
+
+
+        <div class="passo">
+
+            <div class="numero">
+                4
+            </div>
+
+            <h3>
+                🎁 Troque
+            </h3>
+
+            <p>
+                Utilize seus pontos em benefícios.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     MEU IMPACTO
+===================================================== -->
+
+<section id="pontos">
+
+    <h2 class="titulo">
+        Meu <span>impacto</span> 🌱
+    </h2>
+
+    <p class="subtitulo">
+
+        Registre suas reciclagens e veja sua evolução.
+
+    </p>
+
+
+    <div class="painel">
+
+        <div
+            class="nivel"
+            id="nivel">
+
+            🌱 Nível 1 — Iniciante
+
+        </div>
+
+
+        <div
+            class="pontos"
+            id="pontos">
+
+            0
+
+        </div>
+
+        <p>
+            pontos acumulados
+        </p>
+
+
+        <div class="barra">
+
+            <div
+                class="progresso"
+                id="progresso">
+
+            </div>
+
+        </div>
+
+
+        <p id="mensagem">
+            Comece sua jornada sustentável!
+        </p>
+
+
+        <br>
+
+
+        <button
+            class="btn"
+            onclick="registrarReciclagem()">
+
+            ♻️ Registrar reciclagem
+
+        </button>
+
+
+        <div class="estatisticas">
+
+
+            <div class="estatistica">
+
+                <strong id="reciclagens">
+                    0
+                </strong>
+
+                <small>
+                    Reciclagens
+                </small>
+
+            </div>
+
+
+            <div class="estatistica">
+
+                <strong id="acoes">
+                    0
+                </strong>
+
+                <small>
+                    Ações
+                </small>
+
+            </div>
+
+
+            <div class="estatistica">
+
+                <strong id="nivelNumero">
+                    1
+                </strong>
+
+                <small>
+                    Nível
+                </small>
+
+            </div>
+
+
+        </div>
+
+    </div>
 
 </section>
 
-<section id="impacto" class="impact reveal">
 
-<div class="section-header">
+<!-- =====================================================
+     IMPACTO DO PROJETO
+===================================================== -->
 
-<div class="section-tag">
-Nosso impacto
-</div>
+<section>
 
-<h2 class="section-title">
-Pequenas ações.<br>
-Grandes mudanças.
-</h2>
+    <h2 class="titulo">
+        Impacto do <span>projeto</span>
+    </h2>
 
-</div>
+    <p class="subtitulo">
 
-<div class="impact-box">
+        Nosso objetivo é transformar pequenas ações
+        em grandes resultados.
 
-<p>
-O Recicla Paraná busca aumentar a reciclagem,
-reduzir a poluição e fortalecer a educação
-ambiental. A tecnologia ajuda a acompanhar
-as ações dos usuários e mostrar como pequenas
-atitudes podem gerar grandes mudanças.
-</p>
+    </p>
 
-</div>
+
+    <div class="impacto">
+
+
+        <div class="impacto-box">
+
+            <strong>
+                ♻️
+            </strong>
+
+            <p>
+                Aumentar a reciclagem
+            </p>
+
+        </div>
+
+
+        <div class="impacto-box">
+
+            <strong>
+                🌱
+            </strong>
+
+            <p>
+                Incentivar a educação ambiental
+            </p>
+
+        </div>
+
+
+        <div class="impacto-box">
+
+            <strong>
+                📱
+            </strong>
+
+            <p>
+                Usar tecnologia para gerar impacto
+            </p>
+
+        </div>
+
+
+        <div class="impacto-box">
+
+            <strong>
+                🤝
+            </strong>
+
+            <p>
+                Envolver a comunidade
+            </p>
+
+        </div>
+
+    </div>
 
 </section>
 
-<section class="cta">
 
-<h2>
-Faça parte da mudança 🌎
-</h2>
+<!-- =====================================================
+     PONTOS DE COLETA
+===================================================== -->
 
-<p>
-Comece com uma pequena atitude.
-Recicle, participe e incentive
-outras pessoas.
-</p>
+<section id="coleta">
 
-<a href="#recompensas" class="button">
-Começar agora ♻️
-</a>
+    <h2 class="titulo">
+        Pontos de <span>coleta</span> 📍
+    </h2>
+
+    <p class="subtitulo">
+
+        Encontre locais adequados para entregar
+        seus materiais recicláveis.
+
+    </p>
+
+
+    <div class="localizacao">
+
+        <h3>
+            📍 Encontre um ponto próximo
+        </h3>
+
+        <p>
+
+            No aplicativo, o usuário poderá visualizar
+            pontos de coleta disponíveis e encontrar o
+            local mais próximo para realizar o descarte.
+
+        </p>
+
+        <button
+            class="btn"
+            onclick="mostrarAviso()">
+
+            🔎 Procurar ponto de coleta
+
+        </button>
+
+    </div>
 
 </section>
+
+
+<!-- =====================================================
+     QUIZ
+===================================================== -->
+
+<section id="quiz">
+
+    <h2 class="titulo">
+        Quiz da <span>Reciclagem</span> 🧠
+    </h2>
+
+    <p class="subtitulo">
+
+        Teste seus conhecimentos sobre sustentabilidade!
+
+    </p>
+
+
+    <div class="quiz">
+
+        <h3>
+            Qual desses materiais é reciclável?
+        </h3>
+
+
+        <button
+            class="resposta"
+            onclick="responder(false)">
+
+            🍌 Restos de comida
+
+        </button>
+
+
+        <button
+            class="resposta"
+            onclick="responder(true)">
+
+            🥤 Garrafa PET
+
+        </button>
+
+
+        <button
+            class="resposta"
+            onclick="responder(false)">
+
+            🧻 Papel higiênico usado
+
+        </button>
+
+
+        <button
+            class="resposta"
+            onclick="responder(false)">
+
+            🗑️ Resíduo contaminado
+
+        </button>
+
+
+        <div id="resultado"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     RODAPÉ
+===================================================== -->
 
 <footer>
 
-<h2>♻️ Recicla Paraná</h2>
+    <h2>
+        ♻️ Recicla Paraná
+    </h2>
 
-<p>Recicle. Participe. Transforme.</p>
+    <p>
+        Recicle. Participe. Transforme.
+    </p>
 
-<p>Projeto de sustentabilidade e tecnologia.</p>
+    <p>
+        Tecnologia a favor de um futuro sustentável.
+    </p>
 
-<br>
+    <br>
 
-<p>© 2026 Recicla Paraná</p>
+    <p>
+        © 2026 Recicla Paraná
+    </p>
 
 </footer>
 
-<div id="notification"></div>
 
-<button id="top" onclick="topo()">↑</button>
+<!-- NOTIFICAÇÃO -->
+
+<div
+    class="notificacao"
+    id="notificacao">
+
+    ♻️ Ação registrada! +10 pontos!
+
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
 
 <script>
 
-function abrirMenu(){
-    document.getElementById("nav").classList.toggle("active");
-}
+    /* =====================================================
+       MENU MOBILE
+    ===================================================== */
 
-document.querySelectorAll("nav a").forEach(link=>{
-    link.addEventListener("click",()=>{
-        document.getElementById("nav").classList.remove("active");
-    });
-});
+    function abrirMenu() {
 
-let pontos =
-Number(localStorage.getItem("recicla-pontos")) || 0;
+        const menu =
+            document.getElementById("menu");
 
-function atualizarPontos(){
-    document.getElementById("points").textContent =
-    pontos.toLocaleString("pt-BR");
-}
+        menu.classList.toggle("ativo");
 
-function reciclar(){
+    }
 
-    pontos += 10;
 
-    localStorage.setItem("recicla-pontos",pontos);
+    /* =====================================================
+       SISTEMA DE PONTOS
+    ===================================================== */
 
-    atualizarPontos();
+    let pontos =
+        Number(localStorage.getItem("pontos")) || 0;
 
-    mensagem("♻️ Reciclagem registrada! +10 pontos");
-}
+    let reciclagens =
+        Number(localStorage.getItem("reciclagens")) || 0;
 
-atualizarPontos();
 
-let tempo;
+    function atualizarPainel() {
 
-function mensagem(texto){
+        document.getElementById("pontos")
+            .innerText = pontos;
 
-    const caixa =
-    document.getElementById("notification");
 
-    caixa.textContent = texto;
+        document.getElementById("reciclagens")
+            .innerText = reciclagens;
 
-    caixa.classList.add("show");
 
-    clearTimeout(tempo);
+        document.getElementById("acoes")
+            .innerText = reciclagens;
 
-    tempo=setTimeout(()=>{
-        caixa.classList.remove("show");
-    },2500);
-}
 
-const elementos =
-document.querySelectorAll(".reveal");
+        /* NÍVEIS */
 
-function animar(){
+        let nivel = 1;
 
-    elementos.forEach(elemento=>{
+        if (pontos >= 100) nivel = 2;
 
-        const posicao =
-        elemento.getBoundingClientRect().top;
+        if (pontos >= 250) nivel = 3;
 
-        if(posicao < window.innerHeight-100){
-            elemento.classList.add("active");
+        if (pontos >= 500) nivel = 4;
+
+        if (pontos >= 1000) nivel = 5;
+
+
+        document.getElementById("nivelNumero")
+            .innerText = nivel;
+
+
+        const nomes = {
+
+            1: "🌱 Nível 1 — Iniciante",
+
+            2: "🌿 Nível 2 — Protetor",
+
+            3: "🌳 Nível 3 — Guardião",
+
+            4: "🌎 Nível 4 — Defensor",
+
+            5: "🏆 Nível 5 — Embaixador"
+
+        };
+
+
+        document.getElementById("nivel")
+            .innerText = nomes[nivel];
+
+
+        /* BARRA */
+
+        let progresso =
+            (pontos % 100);
+
+        if (pontos > 0 && progresso === 0) {
+            progresso = 100;
         }
 
-    });
-}
 
-window.addEventListener("scroll",animar);
+        document.getElementById("progresso")
+            .style.width =
+            progresso + "%";
 
-animar();
 
-const contadores =
-document.querySelectorAll(".contador");
+        /* MENSAGEM */
 
-let iniciou=false;
+        if (pontos === 0) {
 
-function iniciarContadores(){
+            document.getElementById("mensagem")
+                .innerText =
+                "Comece sua jornada sustentável!";
 
-    if(iniciou) return;
+        }
 
-    const stats =
-    document.querySelector(".stats")
-    .getBoundingClientRect().top;
+        else if (pontos < 100) {
 
-    if(stats < window.innerHeight-100){
+            document.getElementById("mensagem")
+                .innerText =
+                "Você está começando muito bem! 🌱";
 
-        iniciou=true;
+        }
 
-        contadores.forEach(contador=>{
+        else if (pontos < 500) {
 
-            const alvo =
-            Number(contador.dataset.numero);
+            document.getElementById("mensagem")
+                .innerText =
+                "Continue assim! Você está fazendo a diferença. 🌿";
 
-            let atual=0;
+        }
 
-            const incremento =
-            Math.max(1,Math.ceil(alvo/80));
+        else {
 
-            const intervalo=setInterval(()=>{
+            document.getElementById("mensagem")
+                .innerText =
+                "Você é um verdadeiro defensor do meio ambiente! 🌎";
 
-                atual += incremento;
+        }
 
-                if(atual>=alvo){
-
-                    atual=alvo;
-
-                    clearInterval(intervalo);
-                }
-
-                contador.textContent =
-                atual.toLocaleString("pt-BR");
-
-            },25);
-
-        });
-    }
-}
-
-window.addEventListener("scroll",iniciarContadores);
-
-iniciarContadores();
-
-const botaoTopo =
-document.getElementById("top");
-
-window.addEventListener("scroll",()=>{
-
-    if(window.scrollY>500){
-        botaoTopo.style.display="block";
-    }else{
-        botaoTopo.style.display="none";
     }
 
-});
 
-function topo(){
+    function registrarReciclagem() {
 
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
+        pontos += 10;
 
-}
+        reciclagens++;
+
+
+        localStorage.setItem(
+            "pontos",
+            pontos
+        );
+
+
+        localStorage.setItem(
+            "reciclagens",
+            reciclagens
+        );
+
+
+        atualizarPainel();
+
+        mostrarNotificacao();
+
+    }
+
+
+    /* =====================================================
+       NOTIFICAÇÃO
+    ===================================================== */
+
+    function mostrarNotificacao() {
+
+        const notificacao =
+            document.getElementById("notificacao");
+
+        notificacao.classList.add("mostrar");
+
+
+        setTimeout(() => {
+
+            notificacao.classList.remove("mostrar");
+
+        }, 2500);
+
+    }
+
+
+    function mostrarAviso() {
+
+        alert(
+            "📍 Essa função poderá mostrar os pontos de coleta próximos ao usuário."
+        );
+
+    }
+
+
+    /* =====================================================
+       QUIZ
+    ===================================================== */
+
+    function responder(correta) {
+
+        const resultado =
+            document.getElementById("resultado");
+
+
+        if (correta) {
+
+            resultado.innerHTML =
+                "🎉 Parabéns! Você acertou!";
+
+            resultado.style.color =
+                "#15945f";
+
+        }
+
+        else {
+
+            resultado.innerHTML =
+                "💡 Quase! Tente novamente.";
+
+            resultado.style.color =
+                "#c43b3b";
+
+        }
+
+    }
+
+
+    /* =====================================================
+       INICIAR
+    ===================================================== */
+
+    atualizarPainel();
 
 </script>
 
 </body>
+
 </html>
