@@ -1,5 +1,30 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+ <style>
+        header {
+            background-color: #183C63;
+            color: #FFFFFF;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+       
+
+        img {
+            width: 80px;
+            height: 80px;
+        }
+
+        div p {
+            font-weight: bold;
+        }
+
+        .artigo-autor {
+            font-weight: bold;
+        }
+    </style>
+    <article>
 
 <head>
     <meta charset="UTF-8">
